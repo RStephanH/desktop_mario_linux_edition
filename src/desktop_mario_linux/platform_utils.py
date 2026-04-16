@@ -3,13 +3,15 @@ from __future__ import annotations
 import ctypes
 import platform
 import tkinter as tk
-from ctypes import wintypes
 
 IS_WINDOWS = platform.system() == "Windows"
 
 
-class LASTINPUTINFO(ctypes.Structure):
-    _fields_ = [("cbSize", wintypes.UINT), ("dwTime", wintypes.DWORD)]
+if IS_WINDOWS:
+    from ctypes import wintypes
+
+    class LASTINPUTINFO(ctypes.Structure):
+        _fields_ = [("cbSize", wintypes.UINT), ("dwTime", wintypes.DWORD)]
 
 
 def set_process_dpi_awareness() -> None:

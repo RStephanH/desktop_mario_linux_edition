@@ -4,6 +4,8 @@ import tkinter as tk
 
 from .platform_utils import configure_overlay_window, get_idle_time_seconds, set_process_dpi_awareness
 
+EMOJI_FONT_FAMILY = ("Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", "Arial Unicode MS")
+
 
 class MystifyLines:
     def __init__(self, canvas: tk.Canvas, width: int, height: int):
@@ -79,7 +81,7 @@ class FallingHeart:
             self.y,
             text=random.choice(chars),
             fill=random.choice(colors),
-            font=("Segoe UI Emoji", self.size),
+            font=(EMOJI_FONT_FAMILY, self.size),
         )
 
     def fall(self) -> None:
