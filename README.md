@@ -4,13 +4,13 @@ A **stress-relief mini-game** that lives on your Windows desktop as a transparen
 
 > People work continuously and get stressed. Desktop Mario gives you a quick fun break — right on your desktop. Press **Ctrl+Alt+M** anytime to play!
 
-![Windows](https://img.shields.io/badge/platform-Windows-blue)
+![Platforms](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 
 ## ✨ Features
 
-- **Desktop overlay** — plays right on top of your work, with a transparent background
+- **Desktop overlay** — plays right on top of your work, with transparent background support where available
 - **Ctrl+Alt+M** hotkey to instantly show/hide the game
 - **System tray icon** — runs silently in background, right-click to show/hide or quit
 - **Classic SMB mechanics** inspired by the original NES Super Mario Bros:
@@ -41,12 +41,18 @@ Options during install:
 - Create desktop shortcut
 - Start with Windows (runs in background)
 
-### Run from Source
+### Run from Source (uv)
 ```bash
 git clone https://github.com/bxf1001g/desktop_mario.git
 cd desktop_mario
-pip install pystray Pillow
-python mario_enhanced.py
+uv sync
+uv run desktop-mario-overlay
+```
+
+Other Python entry points:
+```bash
+uv run desktop-hearts-overlay
+uv run desktop-mario-screensaver
 ```
 
 ## 🔨 Build
@@ -62,7 +68,14 @@ GOOS=windows GOARCH=amd64 go build -ldflags "-H windowsgui" -o DesktopMario.exe 
 
 Logs are written to `desktop_mario.log` next to the executable.
 
-### Build Python .exe (legacy)
+### Run Legacy Script Entry Points
+```bash
+python mario_enhanced.py
+python desktop_hearts.py
+python desktop_screensaver.py
+```
+
+### Build Python .exe (legacy, Windows)
 ```bash
 pip install pyinstaller pystray Pillow
 python -m PyInstaller --onefile --windowed --name DesktopMario --hidden-import pystray --hidden-import pystray._win32 --hidden-import PIL mario_enhanced.py
@@ -86,6 +99,12 @@ If you enjoy Desktop Mario, consider buying me a coffee!
 ## 🎨 Credits
 
 Sprite assets by **[webfussel](https://webfussel.itch.io/more-bit-8-bit-mario)** — *More-bit 8-bit Mario* (itch.io). Thank you for the amazing SMAS-style sprites!
+
+## 🐧 Linux Notes
+
+- The Python overlays now run on Linux using the same entry points via `uv`.
+- Window transparency behavior depends on your window manager/compositor.
+- Global idle-time detection in `desktop-mario-screensaver` is Windows-only; on Linux, the screensaver starts immediately and exits on input.
 
 ## 📄 License
 

@@ -1,0 +1,1 @@
+"""Desktop Mario overlays package."""

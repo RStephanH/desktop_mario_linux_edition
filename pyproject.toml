@@ -1,0 +1,19 @@
+[project]
+name = "desktop-mario-linux"
+version = "0.1.0"
+description = "Desktop Mario overlays and screensaver in Python with Linux support"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+desktop-mario-overlay = "desktop_mario_linux.mario_overlay:main"
+desktop-hearts-overlay = "desktop_mario_linux.hearts_overlay:main"
+desktop-mario-screensaver = "desktop_mario_linux.screensaver:main"
+
+[build-system]
+requires = ["hatchling>=1.24.2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/desktop_mario_linux"]
